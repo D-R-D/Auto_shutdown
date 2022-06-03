@@ -1,5 +1,5 @@
 # Auto_shutdown
-　
+
 Auto(自動ではない)shutdown  
 23000 ポートで停止シグナル("power_off_signal\n")を受信したときにwindowsのシャットダウンを開始します。
 
