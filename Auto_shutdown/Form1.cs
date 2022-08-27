@@ -24,6 +24,8 @@ namespace Auto_shutdown
             notifyIcon1.Visible = false;
             notifyIcon1.Dispose();
 
+            notifyIcon1.Text = "starting...";
+
             Application.ApplicationExit -= new EventHandler(ApplicationExitEvent);
         }
 
@@ -41,6 +43,7 @@ namespace Auto_shutdown
                 this.Hide();
                 fast = true;
             }
+            this.Focus();
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -85,6 +88,7 @@ namespace Auto_shutdown
             Invoke((MethodInvoker)delegate
             {
                 richTextBox1.Text += "Connection waiting... IPEndPoint : " + IPE.Address.ToString() + " : " + IPE.Port.ToString() + "\n";
+                notifyIcon1.Text = "tcp listener[port:23000] started!!";
             });
 
             while (true)
@@ -144,6 +148,7 @@ namespace Auto_shutdown
                 if (str == "power_off_signal\n")
                 {
                     richTextBox1.Text += "Stop signal received.\n";
+                    notifyIcon1.Text = "shutdown signal received";
                     shutdowner();
                 }
                 else
@@ -175,6 +180,8 @@ namespace Auto_shutdown
 
             // ŠJŽn
             var process = Process.Start(psi);
+
+            notifyIcon1.Text = "waiting shutdown process...";
         }
 
 
